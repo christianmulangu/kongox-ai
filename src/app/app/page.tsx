@@ -4,7 +4,7 @@ import { useEffect, useState, useRef } from 'react';
 import { onAuthStateChanged, signInAnonymously } from 'firebase/auth';
 import { collection, query, orderBy, limit, onSnapshot, addDoc, serverTimestamp } from 'firebase/firestore';
 import { auth, db } from '@/lib/firebase/config';
-import { LucideReact, ScrollText, Loader2, Send } from 'lucide-react';
+import { ScrollText, Loader2, Send } from 'lucide-react';
 import clsx from 'clsx';
 
 export default function Chat() {
