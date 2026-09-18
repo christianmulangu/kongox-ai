@@ -12,21 +12,22 @@ export async function POST(req: Request) {
       );
     }
 
-    const apiKey = process.env.GOOGLE_GENAI_API_KEY;
+    // Récupération de la clé depuis l'une ou l'autre des variables d'environnement
+    const apiKey = process.env.GOOGLE_GENAI_API_KEY || process.env.GEMINI_API_KEY;
 
     if (!apiKey) {
+      console.error("Clé API manquante dans process.env");
       return NextResponse.json(
-        { error: "La clé d'API GOOGLE_GENAI_API_KEY est manquante sur le serveur." },
+        { error: "La clé d'API GOOGLE_GENAI_API_KEY ou GEMINI_API_KEY est introuvable sur le serveur." },
         { status: 500 }
       );
     }
 
-    // Initialisation explicite de l'instance SDK avec la clé d'API
-    const ai = new GoogleGenAI({ apiKey });
+    // Initialisation du SDK avec la clé transmise explicitement
+    const ai = new GoogleGenAI({ apiKey: apiKey });
 
-    // Appel au modèle Gemini
     const response = await ai.models.generateContent({
-      model: 'gemini-1.5-flash',
+      model: 'gemini-2.5-flash',
       contents: message,
     });
 
