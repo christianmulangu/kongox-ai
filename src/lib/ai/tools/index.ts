@@ -1,5 +1,4 @@
-import { GoogleGenerativeAI } from '@google/genai';
-
+import { GoogleGenAI } from '@google/genai';
 /**
  * Tool: Calculator
  * Safely evaluates a mathematical expression.
